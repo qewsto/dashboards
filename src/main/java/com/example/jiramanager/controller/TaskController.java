@@ -4,7 +4,13 @@ import com.example.jiramanager.dto.TaskDto;
 import com.example.jiramanager.entity.Task;
 import com.example.jiramanager.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -20,12 +26,12 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public Mono<TaskDto> getTask(@PathVariable String id) {
-        return Mono.just(taskService.getTask(UUID.fromString(id)));
+        return taskService.getTask(UUID.fromString(id));
     }
 
     @GetMapping("/all")
     public Flux<TaskDto> getTasks() {
-        return Flux.fromIterable(taskService.getAllTasks());
+        return taskService.getAllTasks();
     }
 
     @PostMapping("/add")

@@ -1,12 +1,12 @@
 package com.example.jiramanager.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
+@AllArgsConstructor
 public class TaskDto {
     private String name;
     private String description;
